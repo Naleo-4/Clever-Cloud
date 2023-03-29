@@ -2,57 +2,25 @@ const express = require('express');
 const bodyParser = require("body-parser");
 const app = express();
 const http = require("http").Server(app);
-const io = require('socket.io')(http);
-const update = new Event("update");
-
+const Ably = require('ably');
+const ably = new Ably.Realtime.Promise('K745cw._-4ijg:agBrhzlItDUhMfOfx3gkjF_Yqkvwy2JoOrgbi7YP5KE');
 let name = "";
-
-const WebSocket = require('ws');
-const wss = new WebSocket.Server({ port: process.env.PORT || 8080});
-
-wss.on('connection', ws => {
-  console.log('New client connected!');
-  ws.on('message', message => {
-    console.log(`Received message => ${message}`)
-  })
-  
-  ws.on('close', () => console.log('Client has disconnected!'));
-});
-
-// setInterval(() => {
-//   wss.clients.forEach((client) => {
-//     client.send(new Date().toTimeString());
-//   });
-// }, 1000);
 
 // app.engine('html', require('ejs').renderFile);
 // app.set('view engine', 'html');
 // app.set('views', __dirname + "/views");
 
-
-
-
+ably.connection.once("connected");
+channel = ably.channels.get("quickstart");
+channel.subscribe("greeting", (message) => {
+  console.log("Message is ==> " + message.data);
+});
+channel.publish("greeting", "hellteteto!");
 
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(bodyParser.text({type: 'text/plain'}));
 
-// wss.on('connection', ws => {
-//   ws.on('message', message => {
-//     console.log(`Received message => ${message}`)
-//   })
-//   ws.send('Hello! Message From Server!!')
-// })
-
-// io.on("connection", function (socket) {
-//   socket.emit("sendToClient", { name });
-//   socket.on("receivedFromClient", function (data) {
-//     console.log(data);
-//   });
-// });
-// io.on("/post", () =>{
-//   socket.emit("sendToClient", { name });
-// })
 
 app.get('/', (req, res) => {
   res.sendFile(__dirname + "/static/index.html");
@@ -67,11 +35,7 @@ app.post('/post', (request, response) => {
   // response.send(name + '5'); // 5 up to 10
   response.send('5');
   console.log(request.body);
-  wss.clients.forEach((client) => {
-    if (client.readyState === WebSocket.OPEN) {
-      client.send(name);
-    }
-  });
+  channel.publish("greeting", request.body);
 });
 
 http.listen(process.env.PORT || 3000, () => {

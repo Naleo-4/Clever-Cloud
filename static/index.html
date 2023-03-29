@@ -1,21 +1,42 @@
-<html>
+<!DOCTYPE html>
+<html lang="en">
 
 <head>
-    <script>
-        const ws = new WebSocket("ws://localhost:8080");
-        ws.addEventListener("open", () => {
-            console.log("We are connected");
-            ws.send("How are you?");
-        });
-
-        ws.addEventListener('message', function (event) {
-            console.log(event.data);
-        });
-    </script>
+    <script src="//cdn.ably.com/lib/ably.min-1.js"></script>
 </head>
 
 <body>
-    <p id="time"></p>
+    <h1>Ably Quickstart</h1>
+
+    <ul>
+        <li>
+            <p id="status">Status</p>
+        </li>
+        <li>
+            <p id="message">Messages</p>
+        </li>
+    </ul>
+
+    <script>
+        const ably = new Ably.Realtime.Promise('K745cw._-4ijg:agBrhzlItDUhMfOfx3gkjF_Yqkvwy2JoOrgbi7YP5KE');
+
+        const ablyRealtimePromiseExample = async () => {
+            await ably.connection.once("connected");
+            document.getElementById("status").innerHTML = "Connected to Ably!";
+
+
+            const channel = ably.channels.get("quickstart");
+
+
+            await channel.subscribe("greeting", (message) => {
+                document.getElementById("message").innerHTML = message.data;
+            });
+
+            await channel.publish("greeting", "hello");
+        };
+
+        ablyRealtimePromiseExample();
+    </script>
 </body>
 
 </html>
