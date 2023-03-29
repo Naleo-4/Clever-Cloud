@@ -1,0 +1,25 @@
+{
+  "name": "clever",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Naleo-4/Clever-Cloud.git"
+  },
+  "author": "Naleo-4",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Naleo-4/Clever-Cloud/issues"
+  },
+  "homepage": "https://github.com/Naleo-4/Clever-Cloud#readme",
+  "dependencies": {
+    "body-parser": "^1.20.2",
+    "express": "^4.18.2",
+    "socket.io": "^4.6.1",
+    "ws": "^8.13.0"
+  }
+}
