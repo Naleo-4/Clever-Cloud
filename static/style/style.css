@@ -1,0 +1,128 @@
+* {
+    margin: 0px;
+    box-sizing: border-box;
+    padding-top: 5px;
+}
+
+body {
+    background-image: url("https://storage.googleapis.com/gcf-sources-368193643683-us-central1/neuback_1.jpg");
+    background-image: url(https://storage.googleapis.com/gcf-sources-368193643683-us-central1/neuback_1.jpg);
+    background-repeat: no-repeat;
+    background-size: cover;
+}
+
+header {
+    display: flex;
+    justify-content: center;
+    background-repeat: no-repeat;
+}
+
+header div {
+    font-size: 50px;
+    font-family: fantasy;
+    color: white;
+    color: red;
+    align-self: center;
+    font-size: 70px;
+    text-align: center;
+}
+
+header img {
+    width: 25%;
+    background-image: none;
+    padding-right: 50px;
+    padding-left: 20px;
+}
+
+.text-animation {
+    width: 100%;
+    background: #3d3d3d;
+    font-size: 30px;
+    font-weight: bold;
+    -webkit-animation: my 2000ms infinite;
+    -moz-animation: my 2000ms infinite;
+    -o-animation: my 2000ms infinite;
+    animation: my 2000ms infinite;
+    height: 100px;
+}
+
+@keyframes my {
+    0% {
+        color: red;
+    }
+
+    50% {
+        color: blue;
+    }
+
+    100% {
+        color: yellow;
+    }
+}
+
+p {
+    width: 50%;
+    align-items: center;
+    align-content: center;
+}
+
+.down {
+    flex-direction: column;
+    display: flex;
+    width: 100%;
+}
+
+content {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    padding-top: 50px;
+    width: 100%;
+    text-align: center;
+}
+
+content p {
+    padding-top: 30px;
+    text-align: center;
+}
+
+content div {
+    width: 50%;
+    height: 70px;
+    background-color: white;
+    font-weight: bold;
+    font-size: 30px;
+    padding-top: 15px;
+    height: auto;
+    border: 10px solid black;
+    padding-bottom: 20px;
+}
+
+@media (max-width:800px) {
+    .down {
+        display: none;
+    }
+
+    img {
+        width: 50% !important;
+    }
+
+    .text-animation {
+        background: grey;
+    }
+
+    content div.none {
+        height: auto;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    content div.text-animation {
+        height: auto;
+        border: none;
+    }
+
+    content div {
+        padding-bottom: 10px;
+    }
+}
