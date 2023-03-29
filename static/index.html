@@ -2,31 +2,22 @@
 <html lang="en">
 
 <head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tracking Elavator</title>
     <script src="//cdn.ably.com/lib/ably.min-1.js"></script>
+    <link rel="stylesheet" href="style/style.css">
 </head>
 
 <body>
-    <h1>Ably Quickstart</h1>
-
-    <ul>
-        <li>
-            <p id="status">Status</p>
-        </li>
-        <li>
-            <p id="message">Messages</p>
-        </li>
-    </ul>
-
     <script>
         const ably = new Ably.Realtime.Promise('K745cw._-4ijg:agBrhzlItDUhMfOfx3gkjF_Yqkvwy2JoOrgbi7YP5KE');
 
         const ablyRealtimePromiseExample = async () => {
             await ably.connection.once("connected");
-            document.getElementById("status").innerHTML = "Connected to Ably!";
-
 
             const channel = ably.channels.get("quickstart");
-
 
             await channel.subscribe("greeting", (message) => {
                 document.getElementById("message").innerHTML = message.data;
@@ -37,6 +28,15 @@
 
         ablyRealtimePromiseExample();
     </script>
+    <header> <img src="https://storage.googleapis.com/gcf-sources-368193643683-us-central1/Logo-NEU.png" alt="">
+        <div class="down">
+            <div>TRACKING ELAVATOR</div>
+            <div>NATIONAL ECONOMICS UNIVERSITY</div>
+        </div>
+    </header>
+    <content>
+        <div id="message" class="none">' + name +'</div>
+    </content>
 </body>
 
 </html>

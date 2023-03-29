@@ -20,10 +20,10 @@ channel.publish("greeting", "hellteteto!");
 app.use(express.urlencoded());
 app.use(express.json());
 app.use(bodyParser.text({type: 'text/plain'}));
-
+app.use(express.static(__dirname + '/static'));
 
 app.get('/', (req, res) => {
-  res.sendFile(__dirname + "/static/index.html");
+  res.sendFile(__dirname + "/index.html");
 });
 
 app.post('/', (req, res) => {
