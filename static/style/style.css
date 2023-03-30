@@ -3,6 +3,9 @@
     box-sizing: border-box;
     padding-top: 5px;
 }
+html {
+    height: 100%;
+}
 
 body {
     background-image: url("https://storage.googleapis.com/gcf-sources-368193643683-us-central1/neuback_1.jpg");

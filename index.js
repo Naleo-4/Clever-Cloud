@@ -15,7 +15,6 @@ channel = ably.channels.get("quickstart");
 channel.subscribe("greeting", (message) => {
   console.log("Message is ==> " + message.data);
 });
-channel.publish("greeting", "hellteteto!");
 
 app.use(express.urlencoded());
 app.use(express.json());
